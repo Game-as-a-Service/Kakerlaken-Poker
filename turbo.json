@@ -6,6 +6,11 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
+    "test:e2e": {},
     "lint": {},
     "start:dev": {
       "cache": false,

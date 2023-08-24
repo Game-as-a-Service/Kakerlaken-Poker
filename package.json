@@ -3,15 +3,30 @@
   "scripts": {
     "build": "turbo run build",
     "start:dev": "turbo run start:dev",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "test:e2e": "turbo run test:e2e",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.1",
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/coverage-v8": "^0.34.2",
     "eslint": "^8.47.0",
+    "jsdom": "^22.1.0",
+    "pactum": "^3.5.0",
     "prettier": "^3.0.2",
     "tsconfig": "workspace:*",
-    "turbo": "latest"
+    "turbo": "latest",
+    "vitest": "^0.34.2"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "Kakerlaken-Poker"
+  "name": "Kakerlaken-Poker",
+  "dependencies": {
+    "fp-ts": "^2.16.1",
+    "monocle-ts": "^2.3.13",
+    "ts-pattern": "^5.0.5"
+  }
 }
