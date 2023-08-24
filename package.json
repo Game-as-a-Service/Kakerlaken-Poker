@@ -6,6 +6,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "test:e2e": "turbo run test:e2e",
+    "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

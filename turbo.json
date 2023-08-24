@@ -12,6 +12,7 @@
     },
     "test:e2e": {},
     "lint": {},
+    "typecheck": {},
     "start:dev": {
       "cache": false,
       "persistent": true

@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["ATDD", "Kakerlaken", "swcrc", "Turborepo", "unplugin"]
+  "cSpell.words": [
+    "ATDD",
+    "Kakerlaken",
+    "swcrc",
+    "Turborepo",
+    "typecheck",
+    "unplugin"
+  ]
 }
