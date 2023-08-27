@@ -6,7 +6,9 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "test": {},
+    "test": {
+      "dependsOn": ["^test"]
+    },
     "test:watch": {
       "cache": false
     },
