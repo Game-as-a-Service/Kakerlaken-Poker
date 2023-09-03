@@ -10,7 +10,13 @@ If not, please ignore
 
 ## What is the scope of this change?
 
-- [ ] **Api**
-- [ ] **Web**
-- [ ] **Ui**
+backend
 - [ ] **Domain**
+- [ ] **Repository**
+- [ ] **UseCase**
+- [ ] **Api**
+
+frontend
+- [ ] **Ui**
+- [ ] **Web**
+
