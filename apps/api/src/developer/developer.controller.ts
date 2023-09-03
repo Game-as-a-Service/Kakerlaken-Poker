@@ -7,6 +7,9 @@ export class DeveloperController {
 
   @Get()
   index() {
-    return 'hello, this is developer api';
+    return (
+      'hello, this is developer api, Our members have: ' +
+      this.developerService.getDevelopers().join(', ')
+    );
   }
 }

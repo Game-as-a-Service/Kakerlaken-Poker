@@ -15,4 +15,14 @@ describe('DeveloperService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('Developers should be array', () => {
+    expectTypeOf(service.getDevelopers()).toBeArray();
+  });
+
+  it('Developers should be has Dlutermade', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['Dlutermade']),
+    );
+  });
 });
