@@ -24,6 +24,13 @@
    9. Github Actions
 
 
+# Start 
+
+```sh
+npm install -g pnpm
+pnpm install
+```
+
 # Turborepo starter
 
 This is an official starter Turborepo.
