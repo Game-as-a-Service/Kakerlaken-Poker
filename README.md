@@ -28,7 +28,11 @@
 
 ```sh
 npm install -g pnpm
+pnpm i -g @nestjs/cli
+pnpm install turbo --global
 pnpm install
+
+
 ```
 
 # Turborepo starter
