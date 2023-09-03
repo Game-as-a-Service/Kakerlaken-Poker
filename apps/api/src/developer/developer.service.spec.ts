@@ -31,4 +31,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['leave3310']),
     );
   });
+
+  it('Developers should be has Pikacnu', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['Pikacnu']),
+    );
+  });
 });

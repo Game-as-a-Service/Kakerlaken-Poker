@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class DeveloperService {
   getDevelopers() {
-    return ['Dlutermade', 'leave3310'];
+    return ['Dlutermade', 'leave3310', 'Pikacnu'];
   }
 }
