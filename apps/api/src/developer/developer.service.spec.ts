@@ -43,4 +43,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['miku3920']),
     );
   });
+
+  it('Developers should be has Laihongde', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['Laihongde']),
+    );
+  });
 });
