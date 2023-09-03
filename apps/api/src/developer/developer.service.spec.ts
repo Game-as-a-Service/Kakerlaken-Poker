@@ -44,9 +44,9 @@ describe('DeveloperService', () => {
     );
   });
 
-  it('Developers should be has Laihongde', () => {
+  it('Developers should be has laihongde', () => {
     expect(service.getDevelopers()).toEqual(
-      expect.arrayContaining(['Laihongde']),
+      expect.arrayContaining(['laihongde']),
     );
   });
 });
