@@ -23,6 +23,7 @@
     "bradlc.vscode-tailwindcss",
     "pflannery.vscode-versionlens",
     "ZixuanChen.vitest-explorer",
-    "vscode-icons-team.vscode-icons"
+    "vscode-icons-team.vscode-icons",
+    "streetsidesoftware.code-spell-checker"
   ]
 }
