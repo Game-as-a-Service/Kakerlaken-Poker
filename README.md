@@ -103,7 +103,7 @@ cd my-turborepo
 pnpm test
 ```
 
-To develop api, run the following command:
+To test api, run the following command:
 
 ```
 cd my-turborepo
