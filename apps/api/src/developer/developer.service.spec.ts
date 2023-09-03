@@ -25,4 +25,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['Dlutermade']),
     );
   });
+
+  it('developers should be has ggg', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['leave3310']),
+    );
+  });
 });
