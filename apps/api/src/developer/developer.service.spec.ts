@@ -37,4 +37,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['Pikacnu']),
     );
   });
+
+  it('developers should be has ppp', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['miku3920']),
+    );
+  });
 });
