@@ -14,6 +14,9 @@
     },
     "test:e2e": {},
     "lint": {},
+    "lint:fix": {
+      "cache": false
+    },
     "typecheck": {},
     "start:dev": {
       "cache": false,

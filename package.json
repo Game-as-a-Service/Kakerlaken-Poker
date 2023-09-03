@@ -8,6 +8,7 @@
     "test:e2e": "turbo run test:e2e",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
   "dependencies": {
     "fp-ts": "^2.16.1",
     "monocle-ts": "^2.3.13",
+    "next": "^13.4.19",
     "ts-pattern": "^5.0.5"
   }
 }
