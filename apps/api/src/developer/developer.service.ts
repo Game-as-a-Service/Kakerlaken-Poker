@@ -10,6 +10,7 @@ export class DeveloperService {
       'miku3920',
       'laihongde',
       'Tuhacrt',
+      'yockwang',
     ];
   }
 }
