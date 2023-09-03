@@ -49,4 +49,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['laihongde']),
     );
   });
+
+  it('Developers should be has Tuhacrt', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['Tuhacrt']),
+    );
+  });
 });
