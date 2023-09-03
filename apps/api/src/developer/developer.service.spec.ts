@@ -38,7 +38,7 @@ describe('DeveloperService', () => {
     );
   });
 
-  it('developers should be has ppp', () => {
+  it('Developers should be has miku3920', () => {
     expect(service.getDevelopers()).toEqual(
       expect.arrayContaining(['miku3920']),
     );
