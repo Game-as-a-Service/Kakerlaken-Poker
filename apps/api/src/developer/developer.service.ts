@@ -11,6 +11,7 @@ export class DeveloperService {
       'laihongde',
       'Tuhacrt',
       'yockwang',
+      'adrian-lin-1-0-0',
     ];
   }
 }
