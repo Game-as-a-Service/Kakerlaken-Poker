@@ -61,4 +61,10 @@ describe('DeveloperService', () => {
       expect.arrayContaining(['yockwang']),
     );
   });
+
+  it('Developers should have adrian-lin-1-0-0', () => {
+    expect(service.getDevelopers()).toEqual(
+      expect.arrayContaining(['adrian-lin-1-0-0']),
+    );
+  });
 });
