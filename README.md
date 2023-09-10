@@ -24,6 +24,17 @@
    9. Github Actions
 
 
+# Start 
+
+```sh
+npm install -g pnpm
+pnpm i -g @nestjs/cli
+pnpm install turbo --global
+pnpm install
+
+
+```
+
 # Turborepo starter
 
 This is an official starter Turborepo.
@@ -74,6 +85,29 @@ To develop all apps and packages, run the following command:
 ```
 cd my-turborepo
 pnpm start:dev
+```
+
+To develop api, run the following command:
+
+```
+cd my-turborepo
+pnpm --filter="api" start:dev
+```
+
+### Test
+
+To test all apps and packages, run the following command:
+
+```
+cd my-turborepo
+pnpm test
+```
+
+To test api, run the following command:
+
+```
+cd my-turborepo
+pnpm --filter="api" test
 ```
 
 ### Remote Caching

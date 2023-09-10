@@ -26,6 +26,9 @@ module.exports = {
     React: true,
     JSX: true,
   },
+  env: {
+    jest: true,
+  },
   settings: {
     "import/resolver": {
       typescript: {

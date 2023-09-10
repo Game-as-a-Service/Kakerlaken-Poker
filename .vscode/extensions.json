@@ -1,0 +1,29 @@
+{
+  "recommendations": [
+    "adpyke.codesnap",
+    "mikestead.dotenv",
+    "usernamehw.errorlens",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "maggie.eslint-rules-zh-plugin",
+    "tombonnike.vscode-status-bar-format-toggle",
+    "eamodio.gitlens",
+    "nhoizey.gremlins",
+    "kisstkondoros.vscode-gutter-preview",
+    "wix.vscode-import-cost",
+    "oderwat.indent-rainbow",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "VisualStudioExptTeam.intellicode-api-usage-examples",
+    "zhuangtongfa.Material-theme",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
+    "yoavbls.pretty-ts-errors",
+    "Prisma.prisma",
+    "bradlc.vscode-tailwindcss",
+    "pflannery.vscode-versionlens",
+    "ZixuanChen.vitest-explorer",
+    "vscode-icons-team.vscode-icons",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
