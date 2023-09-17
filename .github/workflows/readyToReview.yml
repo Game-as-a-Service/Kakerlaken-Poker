@@ -16,6 +16,22 @@ jobs:
 
       - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
 
+      - name: formating body \r
+        id: formating-r
+        uses: mad9000/actions-find-and-replace-string@3
+        with:
+          source: ${{ steps.PR.outputs.pr_body }}
+          find: "\r"
+          replace: "\\r"
+
+      - name: formating body \n
+        id: formating-n
+        uses: mad9000/actions-find-and-replace-string@3
+        with:
+          source: ${{ steps.formating-r.outputs.value }}
+          find: "\n"
+          replace: "\\n"
+
       - name: Output CONTENT
         id: CONTENT
         env:
@@ -24,7 +40,7 @@ jobs:
               {
               "title": "Pull Request URL",
               "url": "${{ steps.PR.outputs.pr_url }}",
-              "description": { "text": "${{ steps.PR.outputs.pr_body }}" },
+              "description": { "text": "${{ steps.formating-n.outputs.value }}" },
               "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}"}
               }
             ]
