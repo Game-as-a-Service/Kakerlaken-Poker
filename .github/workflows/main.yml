@@ -7,25 +7,27 @@ on:
 jobs:
   check_main_branch:
     runs-on: ubuntu-latest
+    outputs:
+      is_main: ${{ steps.main_branch_check.outputs.is_main }}
     steps:
       - name: Check if it comes from the main branch
         id: main_branch_check
-        run: echo "::set-output name=is_main::${{ github.ref == 'refs/heads/main' }}"
+        run: echo "is_main=${{ github.ref == 'refs/heads/main' }}" >> $GITHUB_OUTPUT
 
   check_lint:
     needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
     needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
     needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
