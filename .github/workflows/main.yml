@@ -11,22 +11,18 @@ jobs:
     uses: ./.github/workflows/lanuchTurboRemoteCacheServer.yml
     secrets: inherit
 
-  install:
-    uses: ./.github/workflows/install.yml
-    secrets: inherit
-
   check_lint:
-    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
-    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
-    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
 
