@@ -4,6 +4,8 @@ on: [workflow_call, workflow_dispatch]
 
 jobs:
   submitMessage:
+    permissions:
+      pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
