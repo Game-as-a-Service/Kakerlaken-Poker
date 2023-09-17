@@ -14,6 +14,7 @@ jobs:
       - run: echo "Your PR title is ${{ steps.PR.outputs.pr_title }} and its event is ${{ github.event }}"
 
       - name: Can Review PR
+        if: steps.PR.outputs.pr_found == 'true'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub Actions
