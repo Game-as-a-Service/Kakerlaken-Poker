@@ -19,11 +19,7 @@ jobs:
       - name: Output CONTENT
         id: CONTENT
         run: |
-          PR_BODY="${{ steps.PR.outputs.pr_body }}"
-          PR_BODY="${PR_BODY//'%'/'%25'}"
-          PR_BODY="${PR_BODY//$'\n'/'%0A'}"
-          PR_BODY="${PR_BODY//$'\r'/'%0D'}"
-          echo "content=[{ \"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": {\"text\": \"$PR_BODY\"}, \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at}}\"}}]" >> $GITHUB_ENV
+          echo "content=[{\"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": {\"text\": \"abc\"}, \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at}}\"}}]" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
