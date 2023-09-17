@@ -19,12 +19,7 @@ jobs:
       - name: Output CONTENT
         id: CONTENT
         run: |
-          content='{
-              "title": "Pull Request URL",
-              "url": "${{ steps.PR.outputs.pr_url }}",
-              "description": { "text": "gg" },
-              "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}" }
-            }'
+          content='{"title": "Pull Request URL", "url": "${{ steps.PR.outputs.pr_url }}", "description": { "text": "gg" }, "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}" } }'
           echo "content = [$content]" >> $GITHUB_OUTPUT
 
       - run: echo "${{ steps.CONTENT.outputs.content }}"
