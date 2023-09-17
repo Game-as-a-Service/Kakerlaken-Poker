@@ -31,14 +31,14 @@ jobs:
             },
             ]'
         run: |
-          echo "content=${{ env.content }}" >> $GITHUB_OUTPUT
+          echo "content=${{ toJson(env.content) }}" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub Actions
           DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
-          DISCORD_EMBEDS: ${{ steps.CONTENT.outputs.content }}
+          DISCORD_EMBEDS: ${{ toJson(steps.CONTENT.outputs.content) }}
         uses: Ilshidur/action-discord@master
         with:
           args: "Ready to review PR: ${{ steps.PR.outputs.pr_title }}"
