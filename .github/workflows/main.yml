@@ -5,8 +5,8 @@ on:
     branches:
       - main
   pull_request:
+    types: [opened, synchronize]
     branches:
-      - main
       - "feature/*"
       - "docs/*"
       - "ui/*"
