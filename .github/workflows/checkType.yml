@@ -3,7 +3,7 @@ name: Check Type
 on: [workflow_call, workflow_dispatch]
 
 jobs:
-  check_lint:
+  check_type:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
