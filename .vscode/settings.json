@@ -10,4 +10,5 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
+  "prettier.endOfLine": "lf"
 }
