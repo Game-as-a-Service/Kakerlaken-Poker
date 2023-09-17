@@ -16,24 +16,6 @@ jobs:
 
       - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
 
-      - name: formating body \r
-        id: formating-r
-        uses: mad9000/actions-find-and-replace-string@3
-        with:
-          source: ${{ toJson(steps.PR.outputs.pr_body) }}
-          find: "\r"
-          replace: "\\r"
-
-      - name: formating body \n
-        env:
-          content: "gg"
-        id: formating-n
-        uses: mad9000/actions-find-and-replace-string@3
-        with:
-          source: ${{ toJson(steps.formating-r.outputs.value) }}
-          find: "\n"
-          replace: "\\n"
-
       - name: Output CONTENT
         id: CONTENT
         env:
@@ -42,19 +24,35 @@ jobs:
               {
               "title": "Pull Request URL",
               "url": "${{ steps.PR.outputs.pr_url }}",
-              "description": { "text": "${{ steps.formating-n.outputs.value }}" },
+              "description": { "text": "${{ steps.PR.outputs.pr_body }}" },
               "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}"}
               }
             ]
         run: |
           echo "content=${{ toJson(env.content) }}" >> $GITHUB_OUTPUT
 
+      - name: formating CONTENT \r
+        id: formating-r
+        uses: mad9000/actions-find-and-replace-string@3
+        with:
+          source: ${{ toJson(steps.CONTENT.outputs.content) }}
+          find: "\r"
+          replace: "\\r"
+
+      - name: formating CONTENT \n
+        id: formating-n
+        uses: mad9000/actions-find-and-replace-string@3
+        with:
+          source: ${{ toJson(steps.formating-r.outputs.value) }}
+          find: "\n"
+          replace: "\\n"
+
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub Actions
           DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
-          DISCORD_EMBEDS: ${{ (steps.CONTENT.outputs.content) }}
+          DISCORD_EMBEDS: ${{ (steps.formating-n.outputs.value) }}
         uses: Ilshidur/action-discord@master
         with:
           args: "Ready to review PR: ${{ steps.PR.outputs.pr_title }}"

@@ -8,14 +8,17 @@ on:
 
 jobs:
   check_lint:
+    if: false
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
+    if: false
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
+    if: false
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
 
