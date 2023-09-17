@@ -1,25 +1,31 @@
-name: 👷CI
+name: 👷 Main
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    types: [opened, synchronize]
+    branches: [main]
 
 jobs:
+  check_main_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if it comes from the main branch
+        id: main_branch_check
+        run: echo "is_main=${{ github.ref == 'refs/heads/main' }}" >> $GITHUB_OUTPUT
+
   check_lint:
+    needs: check_main_branch
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
+    needs: check_main_branch
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
+    needs: check_main_branch
+    if: needs.check_main_branch.outputs.is_main == true
     uses: ./.github/workflows/unitTest.yml
-    secrets: inherit
-
-  ready_to_review:
-    needs: [check_lint, check_type, unit_test]
-    uses: ./.github/workflows/readyToReview.yml
     secrets: inherit

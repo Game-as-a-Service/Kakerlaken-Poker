@@ -1,0 +1,23 @@
+name: 👷 Pull Requset CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check_lint:
+    uses: ./.github/workflows/checkLint.yml
+    secrets: inherit
+
+  check_type:
+    uses: ./.github/workflows/checkType.yml
+    secrets: inherit
+
+  unit_test:
+    uses: ./.github/workflows/unitTest.yml
+    secrets: inherit
+
+  ready_to_review:
+    needs: [check_lint, check_type, unit_test]
+    uses: ./.github/workflows/readyToReview.yml
+    secrets: inherit
