@@ -5,23 +5,31 @@ on:
     branches: [main]
 
 jobs:
-  check_main_branch:
+  check_merge:
     runs-on: ubuntu-latest
     outputs:
-      is_main: ${{ steps.main_branch_check.outputs.is_main }}
+      is_merge: ${{ steps.check_merge_commit.outputs.is_merge }}
     steps:
-      - name: Check if it comes from the main branch
-        id: main_branch_check
-        run: echo "is_main=${{ github.ref == 'refs/heads/main' }}" >> $GITHUB_OUTPUT
+      - name: Check if it's a merge commit
+        id: check_merge_commit
+        run: |
+          latest_commit="${{ github.sha }}"
+          commit_message=$(git log --format=%B -n 1 $latest_commit)
+          if [[ $commit_message == *"Merge branch"* ]]; then
+            is_merge=true
+          else
+            is_merge=false
+          fi
+          echo "is_merge=${is_merge}" >> $GITHUB_OUTPUT
 
   push_main:
-    needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
+    needs: check_merge
+    if: needs.check_merge.outputs.is_merge == 'false'
     uses: ./.github/workflows/pushMain.yml
     secrets: inherit
 
   merge_notify:
-    needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'false' && always()
+    needs: check_merge
+    if: needs.check_merge.outputs.is_merge == 'true' && always()
     uses: ./.github/workflows/mergeNotify.yml
     secrets: inherit
