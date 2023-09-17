@@ -14,20 +14,8 @@ jobs:
         id: main_branch_check
         run: echo "is_main=${{ github.ref == 'refs/heads/main' }}" >> $GITHUB_OUTPUT
 
-  check_lint:
+  push_main:
     needs: check_main_branch
     if: needs.check_main_branch.outputs.is_main == 'true'
-    uses: ./.github/workflows/checkLint.yml
-    secrets: inherit
-
-  check_type:
-    needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
-    uses: ./.github/workflows/checkType.yml
-    secrets: inherit
-
-  unit_test:
-    needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'true'
-    uses: ./.github/workflows/unitTest.yml
+    uses: ./.github/workflows/pushMain.yml
     secrets: inherit
