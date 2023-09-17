@@ -13,8 +13,7 @@ jobs:
       - name: Check if it's a merge commit
         id: check_merge_commit
         run: |
-          commit_message=${{github.event.head_commit.message }}
-          if [[ $commit_message == *"Merge branch"* ]]; then
+          if [[${{startsWith(github.event.head_commit.message, 'Merge pull request')}}]]; then
             is_merge=true
           else
             is_merge=false
