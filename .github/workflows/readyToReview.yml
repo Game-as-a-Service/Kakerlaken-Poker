@@ -33,22 +33,6 @@ jobs:
 
       - run: echo "${{ steps.CONTENT.outputs.content }}"
 
-      - name: formating CONTENT \r
-        id: formating-r
-        uses: mad9000/actions-find-and-replace-string@3
-        with:
-          source: ${{ toJson(steps.CONTENT.outputs.content) }}
-          find: "\r"
-          replace: "\\r"
-
-      - name: formating CONTENT \n
-        id: formating-n
-        uses: mad9000/actions-find-and-replace-string@3
-        with:
-          source: ${{ toJson(steps.formating-r.outputs.value) }}
-          find: "\n"
-          replace: "\\n"
-
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
