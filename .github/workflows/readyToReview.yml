@@ -28,7 +28,7 @@ jobs:
         id: formating-n
         uses: mad9000/actions-find-and-replace-string@3
         with:
-          source: ${{ steps.formating-r.outputs.value }}
+          source: ${{ toJson(steps.formating-r.outputs.value) }}
           find: "\n"
           replace: "\\n"
 
