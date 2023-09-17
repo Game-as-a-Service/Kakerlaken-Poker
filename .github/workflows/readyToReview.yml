@@ -18,9 +18,20 @@ jobs:
 
       - name: Output CONTENT
         id: CONTENT
+        env:
+          content: '[
+            {
+            "title": "Pull Request URL",
+            "url": "${{ steps.PR.outputs.pr_url }}",
+            "description": { "text": "${{ steps.PR.outputs.pr_body }}" },
+            "footer":
+            {
+            "text": "created at ${{ steps.PR.outputs.pr_created_at }}",
+            },
+            },
+            ]'
         run: |
-          content="[{ \"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": {\"text\": \"${{ steps.PR.outputs.pr_body }}\"}, \"footer\": {\"text\": \"created at ${{ steps.PR.outputs.pr_created_at }}\"}}]"
-          echo "content=$content" >> $GITHUB_OUTPUT
+          echo "content=${{ fromJson(env.content) }}" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
