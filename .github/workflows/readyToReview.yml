@@ -4,8 +4,6 @@ on: [workflow_call, workflow_dispatch]
 
 jobs:
   submitMessage:
-    permissions:
-      pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
@@ -16,20 +14,20 @@ jobs:
           # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
           sha: ${{ github.event.pull_request.head.sha }}
 
-      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
-
-      - run: echo "Your PR title is ${{ steps.PR.outputs.pr_title }} and its event is ${{ github.event }}"
-
       - name: Can Review PR
-        if: steps.PR.outputs.pr_found == 'true'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub Actions
           DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
-          CONTENT: '{
+          CONTENT: '[
+            {
             "title": "Pull Request URL",
             "url": "${{ steps.PR.outputs.pr_url }}"
-            }'
+            },
+            {
+            "footer": {
+            "text": "${{github.event}}",
+            }]'
           DISCORD_EMBEDS: ${{ toJson(env.CONTENT) }}
         uses: Ilshidur/action-discord@master
         with:
