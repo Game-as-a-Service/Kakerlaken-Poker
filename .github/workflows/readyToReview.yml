@@ -31,6 +31,8 @@ jobs:
         run: |
           echo "content=${{ toJson(env.content) }}" >> $GITHUB_OUTPUT
 
+      - run: echo "${{ steps.CONTENT.outputs.content }}"
+
       - name: formating CONTENT \r
         id: formating-r
         uses: mad9000/actions-find-and-replace-string@3
