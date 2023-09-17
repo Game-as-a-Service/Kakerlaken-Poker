@@ -16,10 +16,6 @@ describe('DeveloperService', () => {
     expect(service).toBeDefined();
   });
 
-  it('error', () => {
-    expect(10).toBe(5);
-  });
-
   it('Developers should be array', () => {
     expect(Array.isArray(service.getDevelopers())).toBe(true);
   });
