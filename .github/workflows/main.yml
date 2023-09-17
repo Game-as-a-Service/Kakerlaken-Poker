@@ -7,6 +7,12 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  gg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello world
+        run: echo "hello world"
+
   check_lint:
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
