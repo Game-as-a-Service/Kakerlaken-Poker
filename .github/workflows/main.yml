@@ -19,3 +19,9 @@ jobs:
     if: needs.check_main_branch.outputs.is_main == 'true'
     uses: ./.github/workflows/pushMain.yml
     secrets: inherit
+
+  merge_notify:
+    needs: check_main_branch
+    if: needs.check_main_branch.outputs.is_main == 'false' && always()
+    uses: ./.github/workflows/mergeNotify.yml
+    secrets: inherit

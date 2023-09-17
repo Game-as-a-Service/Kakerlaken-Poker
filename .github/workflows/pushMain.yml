@@ -17,6 +17,7 @@ jobs:
 
   notify:
     needs: [check_lint, check_type, unit_test]
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Has Failure
@@ -28,7 +29,7 @@ jobs:
       - name: Output CONTENT
         id: CONTENT
         run: |
-          echo "content=[{\"title\": \"Has Push Main\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new push\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"Main Has Push\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new push\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:

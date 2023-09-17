@@ -1,0 +1,29 @@
+name: 👷 Merge Notify
+
+on:
+  workflow_call:
+    inputs:
+      has_failure:
+        type: boolean
+        description: "Has Failure"
+        required: false
+        default: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output CONTENT
+        id: CONTENT
+        run: |
+          echo "content=[{\"title\": \"Main Has Merge\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new merge\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ inputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+
+      - name: Can Review PR
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: GitHub Actions
+          DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
+          DISCORD_EMBEDS: ${{ steps.CONTENT.outputs.content }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: ""
