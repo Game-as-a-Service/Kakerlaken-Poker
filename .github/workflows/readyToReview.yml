@@ -28,4 +28,4 @@ jobs:
             }'
         uses: Ilshidur/action-discord@master
         with:
-          args: ${{toJson(env.CONTENT)}}
+          args: ${{fromJson(env.CONTENT)}}
