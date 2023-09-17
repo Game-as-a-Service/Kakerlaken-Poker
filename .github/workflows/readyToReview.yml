@@ -6,12 +6,28 @@ jobs:
   submitMessage:
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action
+
+      - uses: 8BitJonny/gh-get-current-pr@2.2.0
+        id: PR
+
       - name: Can Review PR
-        uses: rjstone/discord-webhook-notify@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         with:
-          severity: info
-          text: this PR is successfully all checks have passed
-          details: PR ${{ github.event.client_payload.pull_request.html_url }} is ready to be reviewed
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: mytest
-        run: echo "hello world ${{ github.event.client_payload.pull_request.html_url }}"
+          args: '{
+            "username": "GitHub Actions",
+            "avatar_url": "https://avatars.githubusercontent.com/u/44036562?s=200&v=4",
+            "content": "Ready to review PR: ${{ steps.PR.outputs.pr_title }}",
+            "embeds": [
+            {
+            "title": "Pull Request URL",
+            "url": "${{ steps.PR.outputs.pr_url }}"
+            },
+            {
+            "footer": {
+            "text": "${{github.event}}",
+            }]
+            }'

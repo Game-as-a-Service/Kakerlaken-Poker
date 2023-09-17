@@ -1,4 +1,4 @@
-name: :construction_worker:CI
+name: 👷CI
 
 on:
   push:
