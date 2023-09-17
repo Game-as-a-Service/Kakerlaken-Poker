@@ -18,18 +18,16 @@ jobs:
 
       - name: Output CONTENT
         id: CONTENT
-        env:
-          content: |
-            [
-              {
+        run: |
+          content='[
+            {
               "title": "Pull Request URL",
               "url": "${{ steps.PR.outputs.pr_url }}",
               "description": { "text": "gg" },
-              "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}"}
-              }
-            ]
-        run: |
-          echo "content=${{ toJson(env.content) }}" >> $GITHUB_OUTPUT
+              "footer": { "text": "created at ${{ steps.PR.outputs.pr_created_at }}" }
+            }
+          ]'
+          echo "content = $content" >> $GITHUB_OUTPUT
 
       - run: echo "${{ steps.CONTENT.outputs.content }}"
 
