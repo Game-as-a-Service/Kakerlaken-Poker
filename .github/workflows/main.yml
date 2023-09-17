@@ -8,20 +8,18 @@ on:
 
 jobs:
   check_lint:
-    if: false
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
-    if: false
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
-    if: false
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
 
   ready_to_review:
+    needs: [check_lint, check_type, unit_test]
     uses: ./.github/workflows/readyToReview.yml
     secrets: inherit
