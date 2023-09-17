@@ -25,6 +25,10 @@ jobs:
         run: |
           echo "has_failure=true" >> $GITHUB_OUTPUT
 
+      - run: echo "${{ github.repository_owner }}"
+
+      - run: echo "${{ github.repository }}"
+
       - name: Output CONTENT
         id: CONTENT
         run: |
