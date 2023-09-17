@@ -5,29 +5,40 @@ on:
     branches: [main]
 
 jobs:
-  check_merge:
+  check_lint:
+    uses: ./.github/workflows/checkLint.yml
+    secrets: inherit
+
+  check_type:
+    uses: ./.github/workflows/checkType.yml
+    secrets: inherit
+
+  unit_test:
+    uses: ./.github/workflows/unitTest.yml
+    secrets: inherit
+
+  notify:
+    needs: [check_lint, check_type, unit_test]
+    if: always()
     runs-on: ubuntu-latest
-    outputs:
-      is_merge: ${{ steps.check_merge_commit.outputs.is_merge }}
     steps:
-      - name: Check if it's a merge commit
-        id: check_merge_commit
+      - name: Has Failure
+        if: failure()
+        id: has_failure
         run: |
-          if [[${{startsWith(github.event.head_commit.message, 'Merge pull request')}}]]; then
-            is_merge=true
-          else
-            is_merge=false
-          fi
-          echo "is_merge=${is_merge}" >> $GITHUB_OUTPUT
+          echo "has_failure=true" >> $GITHUB_OUTPUT
 
-  push_main:
-    needs: check_merge
-    if: needs.check_merge.outputs.is_merge == 'false'
-    uses: ./.github/workflows/pushMain.yml
-    secrets: inherit
+      - name: Output CONTENT
+        id: CONTENT
+        run: |
+          echo "content=[{\"title\": \"Main Has New Commit\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated Please pull the latest commit\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
-  merge_notify:
-    needs: check_merge
-    if: needs.check_merge.outputs.is_merge == 'true' && always()
-    uses: ./.github/workflows/mergeNotify.yml
-    secrets: inherit
+      - name: Can Review PR
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: GitHub Actions
+          DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
+          DISCORD_EMBEDS: ${{ steps.CONTENT.outputs.content }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: ""
