@@ -1,21 +1,22 @@
 name: 👷 Merge Notify
 
-on: [workflow_call, workflow_dispatch]
+on:
+  workflow_call:
+    inputs:
+      has_failure:
+        type: boolean
+        description: "Has Failure"
+        required: false
+        default: false
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Has Failure
-        if: failure()
-        id: has_failure
-        run: |
-          echo "has_failure=true" >> $GITHUB_OUTPUT
-
       - name: Output CONTENT
         id: CONTENT
         run: |
-          echo "content=[{\"title\": \"Main Has Merge\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new merge\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"Main Has Merge\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new merge\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ inputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:

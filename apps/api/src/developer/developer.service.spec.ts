@@ -17,7 +17,7 @@ describe('DeveloperService', () => {
   });
 
   it('Developers should be array', () => {
-    expect(Array.isArray(service.getDevelopers())).toBe(false);
+    expect(Array.isArray(service.getDevelopers())).toBe(true);
   });
 
   it('Developers should have Dlutermade', () => {
