@@ -6,9 +6,6 @@ jobs:
   check_lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action
-
       - name: ⬇️ Checkout
         uses: actions/checkout@v4
 

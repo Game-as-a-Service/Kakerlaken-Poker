@@ -6,9 +6,6 @@ jobs:
   submitMessage:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action
-
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
         id: PR
 
