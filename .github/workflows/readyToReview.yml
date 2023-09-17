@@ -13,10 +13,12 @@ jobs:
           github-token: ${{ github.token }}
           # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
           sha: ${{ github.event.pull_request.head.sha }}
+
       - name: Output CONTENT
         id: CONTENT
         run: |
-          echo "content=[{\"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\"}, {\"footer\": {\"text\": \"${{github.event}}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\",\"footer\": {\"text\": \"${{github.event}}\"}}]" >> $GITHUB_OUTPUT
+
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
