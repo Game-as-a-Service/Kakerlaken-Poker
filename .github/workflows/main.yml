@@ -1,4 +1,4 @@
-name: CI
+name: :construction_worker:CI
 
 on:
   push:
@@ -7,34 +7,32 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  ci:
+  lanuch_turbo_remote_cache_server:
+    uses: ./.github/workflows/lanuchTurboRemoteCacheServer.yml
+    secrets: inherit
+
+  install:
+    uses: ./.github/workflows/install.yml
+    secrets: inherit
+
+  check_lint:
+    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    uses: ./.github/workflows/checkLint.yml
+    secrets: inherit
+
+  check_type:
+    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    uses: ./.github/workflows/checkType.yml
+    secrets: inherit
+
+  unit_test:
+    needs: ["install", "lanuch_turbo_remote_cache_server"]
+    uses: ./.github/workflows/unitTest.yml
+    secrets: inherit
+
+  Ready_To_Review:
+    needs: [check_lint, check_type, unit_test]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Launch Turbo Remote Cache Server
-        uses: dtinth/setup-github-actions-caching-for-turbo@v1
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Check Lint
-        run: pnpm lint
-
-      - name: Check Type
-        run: pnpm typecheck
-
-      - name: Unit Test
-        run: pnpm test
+      - name: Reminder to review
+        run: echo 'Please review this PR!'

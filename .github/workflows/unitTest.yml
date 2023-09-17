@@ -1,0 +1,15 @@
+name: Unit Test
+
+on: [workflow_call, workflow_dispatch]
+
+jobs:
+  checkout:
+    uses: ./.github/workflows/checkout.yml
+    secrets: inherit
+
+  unit_test:
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unit Test
+        run: pnpm test
