@@ -29,7 +29,7 @@ jobs:
             }'
           DISCORD_EMBEDS: ${{ toJson(env.CONTENT) }}
         run: |
-          echo "${{env.DISCORD_EMBEDS}}"
+          echo "${{ toJson(env.CONTENT) }}"
 
       - name: Can Review PR
         env:
