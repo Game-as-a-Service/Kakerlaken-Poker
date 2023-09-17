@@ -1,0 +1,15 @@
+name: Ready To Review
+
+on: [workflow_call, workflow_dispatch]
+
+jobs:
+  submitMessage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Can Review PR
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          text: this PR is successfully all checks have passed
+          details: PR ${{ github.event.client_payload.pull_request.html_url }} is ready to be reviewed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

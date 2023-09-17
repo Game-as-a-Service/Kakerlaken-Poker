@@ -19,9 +19,7 @@ jobs:
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
 
-  Ready_To_Review:
+  ready_to_review:
     needs: [check_lint, check_type, unit_test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Reminder to review
-        run: echo 'Please review this PRRRR!'
+    uses: ./.github/workflows/readyToReview.yml
+    secrets: inherit
