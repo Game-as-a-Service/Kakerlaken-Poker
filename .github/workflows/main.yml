@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Check if it comes from the main branch
         id: main_branch_check
-        run: echo "is_main=${{ github.ref == 'refs/heads/main' }}" >> $GITHUB_OUTPUT
+        run: echo "::set-output name=is_main::${{ github.ref == 'refs/heads/main' }}"
 
   check_lint:
     needs: check_main_branch
