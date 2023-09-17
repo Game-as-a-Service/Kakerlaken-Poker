@@ -16,7 +16,7 @@ jobs:
 
       - name: Output CONTENT
         env:
-          body: ${{ steps.PR.outputs.pr_body }}
+          body: ${{ toJson(steps.PR.outputs.pr_body) }}
         id: CONTENT
         run: |
           echo "content=[{\"title\": \"${{ steps.PR.outputs.pr_title }}\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": \"${{ env.body }}\", \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at }}\"}}]" >> $GITHUB_OUTPUT
