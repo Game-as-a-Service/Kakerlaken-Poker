@@ -20,11 +20,13 @@ jobs:
         id: formating-r
         uses: mad9000/actions-find-and-replace-string@3
         with:
-          source: ${{ steps.PR.outputs.pr_body }}
+          source: ${{ toJson(steps.PR.outputs.pr_body) }}
           find: "\r"
           replace: "\\r"
 
       - name: formating body \n
+        env:
+          content: "gg"
         id: formating-n
         uses: mad9000/actions-find-and-replace-string@3
         with:
