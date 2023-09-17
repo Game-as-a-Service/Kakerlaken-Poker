@@ -3,13 +3,11 @@ name: Lanuch Turbo Remote Cache Server
 on: [workflow_call, workflow_dispatch]
 
 jobs:
-  checkout:
-    uses: ./.github/workflows/checkout.yml
-    secrets: inherit
-
   lanuch_turbo_remote_cache_server:
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
       - name: Launch Turbo Remote Cache Server
         uses: dtinth/setup-github-actions-caching-for-turbo@v1

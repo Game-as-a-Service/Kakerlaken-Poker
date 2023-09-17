@@ -3,13 +3,11 @@ name: Check Type
 on: [workflow_call, workflow_dispatch]
 
 jobs:
-  checkout:
-    uses: ./.github/workflows/checkout.yml
-    secrets: inherit
-
   check_lint:
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
       - name: Check Type
         run: pnpm typecheck
