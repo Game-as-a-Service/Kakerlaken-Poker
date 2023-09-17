@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
         id: PR
+        with:
+          # Authetication token to access GitHub APIs. (Can be omitted by default.)
+          github-token: ${{ github.token }}
+          # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
+          sha: ${{ github.event.pull_request.head.sha }}
 
       - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
 
