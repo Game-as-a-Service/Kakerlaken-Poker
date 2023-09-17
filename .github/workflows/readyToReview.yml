@@ -9,6 +9,10 @@ jobs:
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
         id: PR
 
+      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+
+      - run: echo "Your PR title is ${{ steps.PR.outputs.pr_title }} and its event is ${{ github.event }}"
+
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
