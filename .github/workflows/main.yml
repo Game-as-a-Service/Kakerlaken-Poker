@@ -7,22 +7,15 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  lanuch_turbo_remote_cache_server:
-    uses: ./.github/workflows/lanuchTurboRemoteCacheServer.yml
-    secrets: inherit
-
   check_lint:
-    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/checkLint.yml
     secrets: inherit
 
   check_type:
-    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/checkType.yml
     secrets: inherit
 
   unit_test:
-    needs: "lanuch_turbo_remote_cache_server"
     uses: ./.github/workflows/unitTest.yml
     secrets: inherit
 
