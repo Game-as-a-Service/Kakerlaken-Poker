@@ -14,14 +14,13 @@ jobs:
           # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
           sha: ${{ github.event.pull_request.head.sha }}
 
+      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+
       - name: Output CONTENT
         id: CONTENT
         run: |
-          PR_BODY="${{ steps.PR.outputs.pr_body }}"
-          PR_BODY="${PR_BODY//'%'/'%25'}"
-          PR_BODY="${PR_BODY//$'\n'/'%0A'}"
-          PR_BODY="${PR_BODY//$'\r'/'%0D'}"
-          echo "content=[{ \"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": {\"text\": \"$PR_BODY\"}, \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at}}\"}}]" >> $GitHub_OUTPUT
+          content="[{ \"title\": \"Pull Request URL\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": {\"text\": \"${{ steps.PR.outputs.pr_body }}\"}, \"footer\": {\"text\": \"created at ${{ steps.PR.outputs.pr_created_at }}\"}}]"
+          echo "content=$content" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
