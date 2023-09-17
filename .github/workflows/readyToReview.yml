@@ -14,8 +14,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: GitHub Actions
           DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
-          CONTENT: '{
-            "embeds": [
+          CONTENT: '[
             {
             "title": "Pull Request URL",
             "url": "${{ steps.PR.outputs.pr_url }}"
@@ -23,8 +22,7 @@ jobs:
             {
             "footer": {
             "text": "${{github.event}}",
-            }]
-            }'
+            }]'
           DISCORD_EMBEDS: ${{ toJson(env.CONTENT) }}
         uses: Ilshidur/action-discord@master
         with:
