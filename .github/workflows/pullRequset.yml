@@ -22,3 +22,5 @@ jobs:
     needs: [check_lint, check_type, unit_test]
     uses: ./.github/workflows/readyToReview.yml
     secrets: inherit
+    with:
+      has_failure: ${{ needs.check_lint.result == 'failure' || needs.check_type.result == 'failure' || needs.unit_test.result == 'failure' }}
