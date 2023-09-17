@@ -25,14 +25,10 @@ jobs:
         run: |
           echo "has_failure=true" >> $GITHUB_OUTPUT
 
-      - run: echo "${{ github.repository_owner }}"
-
-      - run: echo "${{ github.repository }}"
-
       - name: Output CONTENT
         id: CONTENT
         run: |
-          echo "content=[{\"title\": \"Has Push Main\", \"url\": \"https://github.com/${{ github.repository_owner }}/${{ github.repository }}\", \"description\": \"## Main updated because there is a new push\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"Has Push Main\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated because there is a new push\",\"fields\": [{\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{ steps.has_failure.outputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
