@@ -12,10 +12,9 @@ jobs:
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          CONTENT: '{
-            "username": "GitHub Actions",
-            "avatar_url": "https://avatars.githubusercontent.com/u/44036562?s=200&v=4",
-            "content": "Ready to review PR: ${{ steps.PR.outputs.pr_title }}",
+          DISCORD_USERNAME: GitHub Actions
+          DISCORD_AVATAR: https://avatars.githubusercontent.com/u/44036562?s=200&v=4
+          DISCORD_EMBEDS: '{
             "embeds": [
             {
             "title": "Pull Request URL",
@@ -28,4 +27,4 @@ jobs:
             }'
         uses: Ilshidur/action-discord@master
         with:
-          args: ${{fromJson(env.CONTENT)}}
+          args: "Ready to review PR: ${{ steps.PR.outputs.pr_title }}"
