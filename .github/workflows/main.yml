@@ -22,6 +22,6 @@ jobs:
 
   merge_notify:
     needs: check_main_branch
-    if: needs.check_main_branch.outputs.is_main == 'false'
+    if: needs.check_main_branch.outputs.is_main == 'false' && always()
     uses: ./.github/workflows/mergeNotify.yml
     secrets: inherit

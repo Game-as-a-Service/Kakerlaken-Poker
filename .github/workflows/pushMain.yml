@@ -17,6 +17,7 @@ jobs:
 
   notify:
     needs: [check_lint, check_type, unit_test]
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Has Failure

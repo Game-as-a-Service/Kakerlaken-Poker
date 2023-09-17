@@ -18,6 +18,7 @@ jobs:
     secrets: inherit
 
   ready_to_review:
+    if: always()
     needs: [check_lint, check_type, unit_test]
     uses: ./.github/workflows/readyToReview.yml
     secrets: inherit

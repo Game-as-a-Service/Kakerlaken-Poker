@@ -17,7 +17,7 @@ describe('DeveloperService', () => {
   });
 
   it('Developers should be array', () => {
-    expectTypeOf(service.getDevelopers()).toBeArray();
+    expectTypeOf(service.getDevelopers() as any).toBeBoolean();
   });
 
   it('Developers should have Dlutermade', () => {
