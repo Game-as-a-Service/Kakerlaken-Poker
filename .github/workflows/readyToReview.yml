@@ -31,7 +31,7 @@ jobs:
             },
             ]'
         run: |
-          echo "content=${{ toJson(env.content) }}" >> $GITHUB_OUTPUT
+          echo "content=${{ env.content }}" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
