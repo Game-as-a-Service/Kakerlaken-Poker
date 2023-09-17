@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check_lint, check_type, unit_test]
     steps:
-      - run: echo "${{ needs.check_lint.result}}"
-      - run: echo "${{ needs.check_type.result}}"
-      - run: echo "${{ needs.unit_test.result}}"
+      - run: echo "${{ needs.check_lint.result== 'failure'}}"
+      - run: echo "${{ needs.check_type.result== 'failure'}}"
+      - run: echo "${{ needs.unit_test.result== 'failure' }}"
 
   ready_to_review:
     if: always()
