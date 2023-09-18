@@ -28,5 +28,3 @@ jobs:
 
       - name: Unit Test
         run: pnpm test
-
-      - run: echo "test"
