@@ -21,10 +21,11 @@ jobs:
           # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
           sha: ${{ github.event.pull_request.head.sha }}
 
+      - run: echo ${{ fromJson(steps.PR.outputs.pr) }}
       - name: Output CONTENT
         id: CONTENT
         run: |
-          echo "content=[{\"title\": \"${{ steps.PR.outputs.pr_title }}\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": \"## Ready to review PR\",\"fields\": [{\"name\": \"Commit Message\", \"value\": \"${{ github.event.head_commit.message }}\"}, {\"name\": \"Owner\", \"value\": \"${{github.triggering_actor}}\"}, {\"name\": \"Status\", \"value\": \"${{ inputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at }} updated at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"${{ steps.PR.outputs.pr_title }}\", \"url\": \"${{ steps.PR.outputs.pr_url }}\", \"description\": \"## Ready to review PR\",\"fields\": [{\"name\": \"Commit Message\", \"value\": \"${{ github.event.head_commit.message }}\"}, {\"name\": \"Owner\", \"value\": \"${{github.triggering_actor}}\"}, {\"name\": \"Status\", \"value\": \"${{ inputs.has_failure && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{steps.PR.outputs.pr_created_at }} updated at ${{ fromJson(steps.PR.outputs.pr).updated_at }}\"}}]" >> $GITHUB_OUTPUT
 
       - name: Can Review PR
         env:
