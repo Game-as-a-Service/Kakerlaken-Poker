@@ -22,7 +22,7 @@ jobs:
           sha: ${{ github.event.pull_request.head.sha }}
 
       - name: Test
-        run: echo ${{ github.event.head_commit }}
+        run: echo ${{ fromJson(github.event.head_commit) }}
 
       - name: Output CONTENT
         id: CONTENT
