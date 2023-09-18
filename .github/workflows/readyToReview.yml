@@ -13,6 +13,11 @@ jobs:
   submitMessage:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Taipei
+
       - uses: 8BitJonny/gh-get-current-pr@2.2.0
         id: PR
         with:
@@ -22,7 +27,7 @@ jobs:
           sha: ${{ github.event.pull_request.head.sha }}
 
       - name: Test
-        run: echo "${{ fromJson(github.event.head_commit) }}"
+        run: echo "${{ fromJson(steps.PR.outputs.pr) }}"
 
       - name: Output CONTENT
         id: CONTENT

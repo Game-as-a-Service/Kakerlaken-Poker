@@ -22,6 +22,11 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Taipei
+
       - name: Output CONTENT
         id: CONTENT
         run: |
