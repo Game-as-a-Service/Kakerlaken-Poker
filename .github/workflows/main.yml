@@ -22,10 +22,8 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Setup timezone
-        uses: zcong1993/setup-timezone@master
-        with:
-          timezone: Asia/Taipei
+      - name: Set Timezone to Taipei
+        run: sudo ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 
       - name: Output CONTENT
         id: CONTENT
