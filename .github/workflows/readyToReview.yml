@@ -27,7 +27,7 @@ jobs:
           sha: ${{ github.event.pull_request.head.sha }}
 
       - name: Test
-        run: echo "${{ fromJson(steps.PR.outputs.pr) }}"
+        run: echo "${{ toJson(steps.PR.outputs.pr) }}"
 
       - name: Output CONTENT
         id: CONTENT
