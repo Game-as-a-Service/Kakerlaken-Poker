@@ -21,7 +21,9 @@ jobs:
           # Verbose setting SHA when using Pull_Request event trigger to fix #16. (For push even trigger this is not necessary.)
           sha: ${{ github.event.pull_request.head.sha }}
 
-      - run: echo ${{ fromJson(steps.PR.outputs.pr) }}
+      - name: Test
+        run: echo ${{ github.event.head_commit }}
+
       - name: Output CONTENT
         id: CONTENT
         run: |
