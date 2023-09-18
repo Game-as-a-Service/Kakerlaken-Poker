@@ -30,10 +30,10 @@ jobs:
       - name: Get Latest Commit Message
         id: message
         run: |
-          MSG=$(git log --format=%B -n 1 ${{github.event.after}})
+          MSG=$(git log --format=%B -n 1 HEAD | head -n 1)
           echo "MSG=$MSG" >> $GITHUB_OUTPUT
 
-      - run: echo "${{steps.message.outputs.MSG}}}}"
+      - run: echo "${{steps.message.outputs.MSG}}"
 
       - name: Output CONTENT
         id: CONTENT
