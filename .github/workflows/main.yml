@@ -33,6 +33,8 @@ jobs:
 
           echo "content=[{\"title\": \"Main Has New Commit\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated Please pull the latest commit\",\"fields\": [{\"name\": \"Commit Message\", \"value\": \"$ESCAPED_COMMIT_MESSAGE\"}, {\"name\": \"Owner\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{(needs.check_lint.result == 'failure' || needs.check_type.result == 'failure' || needs.unit_test.result == 'failure') && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
+      - run: |
+          echo ${{ steps.CONTENT.outputs.content }}
       - name: Can Review PR
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
