@@ -31,7 +31,7 @@ jobs:
           COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
           ESCAPED_COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | jq -s -R -r @json)
 
-          echo "content=[{\"title\": \"Main Has New Commit\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated Please pull the latest commit\",\"fields\": [{\"name\": \"Commit Message\", \"value\": $ESCAPED_COMMIT_MESSAGE }, {\"name\": \"Owner\", \"value\": \"${{ github.event.head_commit.author }}\"}, {\"name\": \"Trigger Actor\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{(needs.check_lint.result == 'failure' || needs.check_type.result == 'failure' || needs.unit_test.result == 'failure') && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
+          echo "content=[{\"title\": \"Main Has New Commit\", \"url\": \"https://github.com/${{ github.repository }}\", \"description\": \"## Main updated Please pull the latest commit\",\"fields\": [{\"name\": \"Commit Message\", \"value\": $ESCAPED_COMMIT_MESSAGE }, {\"name\": \"Owner\", \"value\": \"${{ github.event.head_commit.author.username }}\"}, {\"name\": \"Trigger Actor\", \"value\": \"${{ github.triggering_actor }}\"}, {\"name\": \"Status\", \"value\": \"${{(needs.check_lint.result == 'failure' || needs.check_type.result == 'failure' || needs.unit_test.result == 'failure') && 'Failure' || 'Success' }}\"}], \"footer\": {\"text\": \"created at ${{ github.event.head_commit.timestamp }}\"}}]" >> $GITHUB_OUTPUT
 
       - run: |
           echo ${{ steps.CONTENT.outputs.content }}
