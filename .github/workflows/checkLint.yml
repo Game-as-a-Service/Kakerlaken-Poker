@@ -25,7 +25,7 @@ jobs:
           cache: "pnpm"
 
       - name: 📦 Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Check Lint
         run: pnpm lint
