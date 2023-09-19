@@ -13,11 +13,15 @@
       "cache": false
     },
     "test:e2e": {},
-    "lint": {},
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
     "lint:fix": {
       "cache": false
     },
-    "typecheck": {},
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
     "start:dev": {
       "cache": false,
       "persistent": true
