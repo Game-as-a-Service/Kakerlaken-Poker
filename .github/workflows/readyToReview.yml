@@ -35,7 +35,7 @@ jobs:
         id: message
         run: |
           MSG=$(git show -s --format=%s)
-          ESCAPED_COMMIT_MESSAGE=$(echo "$MSG" | jq -s -R -r '@json' | sed 's/`/\\**/g')
+          ESCAPED_COMMIT_MESSAGE=$(echo "$MSG" | jq -s -R -r '@json' | sed 's/`/\\*/g')
           AUTOHR=$(git show -s --format=%an)
           echo "ESCAPED_COMMIT_MESSAGE=$ESCAPED_COMMIT_MESSAGE" >> $GITHUB_OUTPUT
           echo "AUTOHR=$AUTOHR" >> $GITHUB_OUTPUT
