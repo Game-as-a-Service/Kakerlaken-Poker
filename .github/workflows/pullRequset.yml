@@ -5,22 +5,14 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  check_lint:
-    uses: ./.github/workflows/checkLint.yml
-    secrets: inherit
-
-  check_type:
-    uses: ./.github/workflows/checkType.yml
-    secrets: inherit
-
-  unit_test:
-    uses: ./.github/workflows/unitTest.yml
+  check:
+    uses: ./.github/workflows/check.yml
     secrets: inherit
 
   ready_to_review:
     if: always()
-    needs: [check_lint, check_type, unit_test]
+    needs: check
     uses: ./.github/workflows/readyToReview.yml
     secrets: inherit
     with:
-      has_failure: ${{ needs.check_lint.result == 'failure' || needs.check_type.result == 'failure' || needs.unit_test.result == 'failure' }}
+      has_failure: ${{ needs.check.result == 'failure' }}

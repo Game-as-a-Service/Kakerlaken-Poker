@@ -1,9 +1,9 @@
-name: Unit Test
+name: Check Lint
 
 on: [workflow_call, workflow_dispatch]
 
 jobs:
-  unit_test:
+  check_lint:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
@@ -27,5 +27,11 @@ jobs:
       - name: 📦 Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Unit Test
+      - name: Check Lint
+        run: pnpm lint
+
+      - name: Check Type
+        run: pnpm checktype
+
+      - name: 🧪 Unit Test
         run: pnpm test
