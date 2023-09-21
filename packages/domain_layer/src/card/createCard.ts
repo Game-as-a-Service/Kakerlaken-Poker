@@ -1,19 +1,20 @@
 import { pipe } from 'fp-ts/function';
 import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
+import Eq from 'fp-ts/Eq';
+
 import { Card, Creature, Status } from './type';
-import str from 'fp-ts/string';
+
 interface CreateCard {
   (creature: Creature): O.Option<Omit<Card, 'id'>>;
 }
 
-const creatureEq = str.Eq;
-const isCreature = (creature: Creature) =>
+const isCreature = (creature: unknown): creature is Creature =>
   pipe(
     //
     Creature,
     Object.values,
-    A.elem(creatureEq)(creature),
+    A.elem(Eq.eqStrict)(creature),
   );
 
 const createCard: CreateCard = (creature) =>
