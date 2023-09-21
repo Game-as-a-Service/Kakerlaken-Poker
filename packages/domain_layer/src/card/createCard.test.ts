@@ -16,4 +16,23 @@ describe('createCard', () => {
 
     expect(card).toBe(O.none);
   });
+
+  it(`
+    given a creature and an id
+      creature is 'Bat'
+      id is 1
+    when create card the creature is not valid
+    then return none
+    `, () => {
+    const creature: Creature = Creature.Bat;
+
+    const card = createCard(creature, 1);
+
+    expect(card).toMatchObject(
+      O.some({
+        id: 1,
+        creature: Creature.Bat,
+      }),
+    );
+  });
 });
