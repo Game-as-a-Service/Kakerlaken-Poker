@@ -17,7 +17,7 @@ const isCreature = (creature: unknown): creature is Creature =>
     A.elem(Eq.eqStrict)(creature),
   );
 
-const createCard: CreateCard = (creature) =>
+export const createCard: CreateCard = (creature) =>
   pipe(
     //
     creature,
@@ -25,5 +25,3 @@ const createCard: CreateCard = (creature) =>
     O.bindTo('creature'),
     O.apS('status', O.some(Status.Unrevealed)),
   );
-
-export default createCard;
