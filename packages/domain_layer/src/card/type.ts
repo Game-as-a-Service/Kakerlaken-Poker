@@ -15,7 +15,7 @@ export enum Status {
 }
 
 export type Card = {
-  id: string;
+  id: number;
   status: Status;
   creature: Creature;
 };

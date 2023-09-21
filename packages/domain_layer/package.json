@@ -20,7 +20,8 @@
   "dependencies": {
     "fp-ts": "^2.16.1",
     "monocle-ts": "^2.3.13",
-    "ts-pattern": "^5.0.5"
+    "ts-pattern": "^5.0.5",
+    "ramda": "0.29.0"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",

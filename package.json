@@ -15,6 +15,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
+    "@types/ramda": "^0.29.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "@vitest/coverage-v8": "^0.34.3",
     "eslint": "^8.48.0",
@@ -31,6 +32,7 @@
     "fp-ts": "^2.16.1",
     "monocle-ts": "^2.3.13",
     "next": "^13.4.19",
+    "ramda": "^0.29.0",
     "ts-pattern": "^5.0.5"
   }
 }
