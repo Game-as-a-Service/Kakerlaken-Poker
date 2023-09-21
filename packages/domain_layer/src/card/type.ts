@@ -1,4 +1,4 @@
-export enum Creatures {
+export enum Creature {
   Bat = 'BAT',
   Cockroach = 'COCKROACH',
   Fly = 'FLY',
@@ -17,5 +17,5 @@ export enum Status {
 export type Card = {
   id: string;
   status: Status;
-  creature: Creatures;
+  creature: Creature;
 };
