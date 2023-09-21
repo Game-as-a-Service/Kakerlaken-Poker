@@ -4,7 +4,7 @@ import O from 'fp-ts/Option';
 import { Card, Creature, Status } from './type';
 import str from 'fp-ts/string';
 interface CreateCard {
-  (creature: Creature, id: number): O.Option<Card>;
+  (creature: Creature): O.Option<Omit<Card, 'id'>>;
 }
 
 const creatureEq = str.Eq;
@@ -16,13 +16,13 @@ const isCreature = (creature: Creature) =>
     A.elem(creatureEq)(creature),
   );
 
-const createCard: CreateCard = (creature, id) =>
+const createCard: CreateCard = (creature) =>
   pipe(
     //
     creature,
     O.fromPredicate(isCreature),
     O.bindTo('creature'),
-    O.apS('id', O.some(id)),
+    O.apS('status', O.some(Status.Unrevealed)),
   );
 
 export default createCard;
