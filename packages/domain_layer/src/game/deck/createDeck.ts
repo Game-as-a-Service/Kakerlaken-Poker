@@ -14,7 +14,7 @@ const createSignedCard = (creature: Creature) =>
   pipe(
     //
     createCard(creature),
-    O.map((card) => A.makeBy(64, always(card))),
+    O.map((card) => A.makeBy(8, always(card))),
   );
 
 const concatCardOfDeck = (creature: Creature) =>
@@ -31,4 +31,11 @@ export const createDeck: CreateDeck = () =>
     //
     [],
     concatCardOfDeck(Creature.Bat),
+    concatCardOfDeck(Creature.Cockroach),
+    concatCardOfDeck(Creature.Fly),
+    concatCardOfDeck(Creature.Rat),
+    concatCardOfDeck(Creature.Scorpion),
+    concatCardOfDeck(Creature.Spider),
+    concatCardOfDeck(Creature.StickBug),
+    concatCardOfDeck(Creature.Toad),
   );
