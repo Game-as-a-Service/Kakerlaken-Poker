@@ -10,7 +10,7 @@ interface CreateDeck {
   (): NoIdCards;
 }
 
-const createSignedCard = (creature: Creature) =>
+const createSingleCreatureCards = (creature: Creature) =>
   pipe(
     //
     createCard(creature),
@@ -21,7 +21,7 @@ const concatCardOfDeck = (creature: Creature) =>
   A.concat(
     pipe(
       //
-      createSignedCard(creature),
+      createSingleCreatureCards(creature),
       O.getOrElse<NoIdCards>(always([])),
     ),
   );
