@@ -2,6 +2,7 @@
   "cSpell.words": [
     "ATDD",
     "Kakerlaken",
+    "preinstall",
     "swcrc",
     "Turborepo",
     "typecheck",
@@ -9,7 +10,5 @@
   ],
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-  "editor.tabSize": 2,
-  "prettier.endOfLine": "lf"
+  "editor.formatOnType": true
 }
