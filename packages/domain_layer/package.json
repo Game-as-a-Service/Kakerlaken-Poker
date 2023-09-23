@@ -20,8 +20,8 @@
   "dependencies": {
     "fp-ts": "^2.16.1",
     "monocle-ts": "^2.3.13",
-    "ts-pattern": "^5.0.5",
-    "ramda": "0.29.0"
+    "ramda": "0.29.0",
+    "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
@@ -32,6 +32,7 @@
     "eslint": "^8.42.0",
     "eslint-config-custom": "workspace:*",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
     "source-map-support": "^0.5.21",
