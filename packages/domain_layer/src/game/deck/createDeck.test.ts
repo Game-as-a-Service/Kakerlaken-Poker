@@ -1,4 +1,5 @@
 import { Creature } from 'card';
+
 import { createDeck } from './createDeck';
 
 describe('createDeck', () => {

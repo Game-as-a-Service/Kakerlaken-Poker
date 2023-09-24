@@ -1,5 +1,6 @@
-import { createCard } from './createCard';
 import O from 'fp-ts/Option';
+
+import { createCard } from './createCard';
 import { Creature, Status } from './type';
 
 describe('createCard', () => {
@@ -19,7 +20,7 @@ describe('createCard', () => {
   it(`
     given a creature
       creature is 'Bat'
-    when create card 
+    when create card
       the creature is valid
     then return Card
       creature is 'Bat'
@@ -38,7 +39,7 @@ describe('createCard', () => {
   it(`
     given a creature
       creature is 'Bat'
-    when create card 
+    when create card
       the creature is valid
       and initial status is unrevealed
     then return card
@@ -61,7 +62,7 @@ describe('createCard', () => {
   it(`
     given a creature
       creature is 'Cockroach'
-    when create card 
+    when create card
       the creature is valid
       and initial status is unrevealed
     then return card
@@ -83,7 +84,7 @@ describe('createCard', () => {
   it(`
     given a creature
       creature is 'Fly'
-    when create card 
+    when create card
       the creature is valid
       and initial status is unrevealed
     then return card
