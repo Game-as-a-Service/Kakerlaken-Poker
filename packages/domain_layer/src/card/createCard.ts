@@ -3,11 +3,9 @@ import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
 import Eq from 'fp-ts/Eq';
 
-import { Card, Creature, Status } from './type';
+import { NoIdCard, Creature, Status } from './type';
 
-interface CreateCard {
-  (creature: Creature): O.Option<Omit<Card, 'id'>>;
-}
+type CreateCard = (creature: Creature) => O.Option<NoIdCard>;
 
 const isCreature = (creature: unknown): creature is Creature =>
   pipe(

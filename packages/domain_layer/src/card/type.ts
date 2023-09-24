@@ -19,3 +19,8 @@ export type Card = {
   status: Status;
   creature: Creature;
 };
+
+/** Used to demonstrate all properties of nested type. */
+type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
+
+export type NoIdCard = Prettify<Omit<Card, 'id'>>;

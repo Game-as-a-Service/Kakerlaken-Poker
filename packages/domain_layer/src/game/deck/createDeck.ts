@@ -1,14 +1,8 @@
-import { Card, Creature, createCard } from 'card';
+import { Creature, NoIdCard, createCard } from 'card';
 import { always } from 'ramda';
 import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/function';
-
-type NoIdCards = Omit<Card, 'id'>[];
-
-interface CreateDeck {
-  (): NoIdCards;
-}
 
 const createSingleCreatureCards = (creature: Creature) =>
   pipe(
@@ -17,25 +11,25 @@ const createSingleCreatureCards = (creature: Creature) =>
     O.map((card) => A.makeBy(8, always(card))),
   );
 
-const concatCardOfDeck = (creature: Creature) =>
+const appendCardToDeck = (creature: Creature) =>
   A.concat(
     pipe(
       //
       createSingleCreatureCards(creature),
-      O.getOrElse<NoIdCards>(always([])),
+      O.getOrElse(Array.of<NoIdCard>),
     ),
   );
 
-export const createDeck: CreateDeck = () =>
+export const createDeck = () =>
   pipe(
     //
     [],
-    concatCardOfDeck(Creature.Bat),
-    concatCardOfDeck(Creature.Cockroach),
-    concatCardOfDeck(Creature.Fly),
-    concatCardOfDeck(Creature.Rat),
-    concatCardOfDeck(Creature.Scorpion),
-    concatCardOfDeck(Creature.Spider),
-    concatCardOfDeck(Creature.StickBug),
-    concatCardOfDeck(Creature.Toad),
+    appendCardToDeck(Creature.Bat),
+    appendCardToDeck(Creature.Cockroach),
+    appendCardToDeck(Creature.Fly),
+    appendCardToDeck(Creature.Rat),
+    appendCardToDeck(Creature.Scorpion),
+    appendCardToDeck(Creature.Spider),
+    appendCardToDeck(Creature.StickBug),
+    appendCardToDeck(Creature.Toad),
   );
