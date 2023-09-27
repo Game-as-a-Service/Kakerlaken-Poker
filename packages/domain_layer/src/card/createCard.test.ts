@@ -1,7 +1,7 @@
 import O from 'fp-ts/Option';
 
-import { createCard } from './createCard';
 import { Creature, Status } from './type';
+import { createCard } from './createCard';
 
 describe('createCard', () => {
   it(`

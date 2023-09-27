@@ -1,6 +1,10 @@
 {
   "name": "kakerlaken-poker",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "start:dev": "turbo run start:dev",
@@ -31,6 +35,7 @@
     "pactum": "^3.5.0",
     "prettier": "^3.0.2",
     "tsconfig": "workspace:*",
+    "eslint-config-custom": "workspace:*",
     "turbo": "latest",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.3"

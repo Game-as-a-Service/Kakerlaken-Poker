@@ -8,7 +8,7 @@ export enum Creature {
   Spider = 'SPIDER',
   StickBug = 'STICK_BUG',
 }
-
+console.log('Creature', Creature);
 export enum Status {
   Unrevealed = 'UNREVEALED',
   Revealed = 'REVEALED',

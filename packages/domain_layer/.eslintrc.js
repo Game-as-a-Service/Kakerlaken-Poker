@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   extends: ['custom/library'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -11,7 +12,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  root: true,
   env: {
     node: true,
     jest: true,
