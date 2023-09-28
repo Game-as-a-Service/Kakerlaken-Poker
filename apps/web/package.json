@@ -20,6 +20,7 @@
     "@next/eslint-plugin-next": "^13.4.19",
     "@testing-library/jest-dom": "^6.1.1",
     "@testing-library/react": "^14.0.0",
+    "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.6.5",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
