@@ -1,7 +1,7 @@
 import { Player } from 'player';
 
 export type Round = {
-  id: number;
+  id?: number;
   currentPlayer: Player;
   selectedPlayer: Player;
 };
