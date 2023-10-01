@@ -20,8 +20,8 @@ const isCreature = (creature: unknown): creature is Creature =>
 export const createCard: CreateCard = (creature) =>
   pipe(
     //
-    creature,
-    O.fromPredicate(isCreature),
-    O.bindTo('creature'),
-    O.apS('status', O.some(Status.Unrevealed)),
+    creature, // 'BAT'
+    O.fromPredicate(isCreature), // true => { _tag: 'Some', value: 'BAT' }
+    O.bindTo('creature'), // { _tag: 'Some', value: {creature: 'BAT' }}
+    O.apS('status', O.some(Status.Unrevealed)), // {_tag: 'Some', value: {create:'BAT', status: 'UNREVEALED'}}
   );
