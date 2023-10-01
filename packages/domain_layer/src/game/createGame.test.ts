@@ -51,7 +51,7 @@ describe('createGame', () => {
     test('should have game object', () => {
       expect(game).toMatchObject(
         O.some({
-          players: [],
+          players: players,
           rounds: [],
           deck: [],
         }),

@@ -9,12 +9,12 @@ import { Game } from './type';
 export type noIdGame = Omit<Game, 'id'>;
 
 interface CreateGame {
-  (users: Player[]): O.Option<noIdGame>;
+  (players: Player[]): O.Option<noIdGame>;
 }
 
-export const createGame: CreateGame = (users) =>
+export const createGame: CreateGame = (players) =>
   pipe(
-    users,
+    players,
     O.fromPredicate(
       flow(
         //
