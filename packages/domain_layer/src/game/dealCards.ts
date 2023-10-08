@@ -6,6 +6,7 @@ import { match } from 'ts-pattern';
 import { shuffle } from 'lib/shuffle';
 import { always, prop } from 'ramda';
 import { Player } from 'player';
+import { Card } from 'card';
 
 import { Game } from './type';
 
@@ -50,12 +51,13 @@ const dealCardsToPlayer = pipe(
     return pipe(
       game,
       modifyPlayerOfGame(
-        A.mapWithIndex((idx, player) => ({
+        A.mapWithIndex<Player, Player>((idx, player) => ({
           ...player,
           hands: pipe(
+            //
             chunksOfDeck,
             A.lookup(idx),
-            O.getOrElse(() => []),
+            O.getOrElse(always<Card[]>([])),
           ),
         })),
       ),
