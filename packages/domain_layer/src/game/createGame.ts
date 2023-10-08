@@ -1,16 +1,17 @@
 import { pipe, flow } from 'fp-ts/function';
+import Random from 'fp-ts/Random';
 import O from 'fp-ts/Option';
-import { gte, prop } from 'ramda';
+import { and, gte, lte, prop } from 'ramda';
 import { Player } from 'player';
 
 import { createDeck } from './deck';
-import { Game } from './type';
-
-export type noIdGame = Omit<Game, 'id'>;
+import { OmitIdGame, Game } from './type';
 
 interface CreateGame {
-  (players: Player[]): O.Option<noIdGame>;
+  (players: Player[]): O.Option<OmitIdGame>;
 }
+
+const checkPlayerCount = (count: number) => and(gte(count)(2), lte(count)(6));
 
 export const createGame: CreateGame = (players) =>
   pipe(
@@ -19,10 +20,15 @@ export const createGame: CreateGame = (players) =>
       flow(
         //
         prop('length'),
-        (length) => gte(length)(2), // length >= 2
+        checkPlayerCount,
       ),
     ),
     O.bindTo('players'),
     O.apS('rounds', O.some([])),
     O.apS('deck', O.some(createDeck())),
+  );
+export const createIdToGame = (game: O.Option<OmitIdGame>): O.Option<Game> =>
+  pipe(
+    game,
+    O.map((game) => ({ ...game, id: Random.randomInt(1, 1000)().toString() })),
   );

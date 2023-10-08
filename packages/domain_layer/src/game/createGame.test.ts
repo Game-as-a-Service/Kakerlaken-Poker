@@ -27,7 +27,7 @@ describe('createGame', () => {
     then create game fail -> return none
     `, () => {
     const players: Player[] = [
-      { uid: '1', name: '1', hands: [], pastReceivedCards: [] },
+      { id: '1', uid: '1', name: '1', hands: [], pastReceivedCards: [] },
     ];
     const game = createGame(players);
 
@@ -42,8 +42,8 @@ describe('createGame', () => {
     then create game successfully -> return game
     `, () => {
     const players: Player[] = [
-      { uid: '1', name: '1', hands: [], pastReceivedCards: [] },
-      { uid: '2', name: '2', hands: [], pastReceivedCards: [] },
+      { id: '1', uid: '1', name: '1', hands: [], pastReceivedCards: [] },
+      { id: '2', uid: '2', name: '2', hands: [], pastReceivedCards: [] },
     ];
 
     const game = createGame(players);
