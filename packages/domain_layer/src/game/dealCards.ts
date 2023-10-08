@@ -57,7 +57,7 @@ const dealCardsToPlayer = pipe(
             //
             chunksOfDeck,
             A.lookup(idx),
-            O.getOrElse(always<Card[]>([])),
+            O.getOrElse(always([])),
           ),
         })),
       ),
