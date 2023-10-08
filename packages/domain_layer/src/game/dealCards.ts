@@ -6,7 +6,6 @@ import { match } from 'ts-pattern';
 import { shuffle } from 'lib/shuffle';
 import { always, prop } from 'ramda';
 import { Player } from 'player';
-import { Card } from 'card';
 
 import { Game } from './type';
 
