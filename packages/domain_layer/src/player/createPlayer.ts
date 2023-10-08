@@ -3,10 +3,10 @@ import { prop, equals, not, and } from 'ramda';
 import O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/function';
 
-import { Player } from './type';
+import { OmitIdPlayer, Player } from './type';
 
 interface CreatePlayer {
-  (user: User): O.Option<Player>;
+  (user: User): O.Option<OmitIdPlayer>;
 }
 
 const userCovertToPlayer = (user: User) =>
@@ -31,4 +31,12 @@ export const createPlayer: CreatePlayer = (user) =>
     O.chain(userCovertToPlayer),
     O.apS('hands', O.some([])),
     O.apS('pastReceivedCards', O.some([])),
+  );
+
+export const createIdToPlayer = (
+  player: O.Option<OmitIdPlayer>,
+): O.Option<Player> =>
+  pipe(
+    player,
+    O.map((player) => ({ ...player, id: player.uid })),
   );
