@@ -20,7 +20,7 @@
   "dependencies": {
     "fp-ts": "^2.16.1",
     "monocle-ts": "^2.3.13",
-    "ramda": "0.29.0",
+    "ramda": "0.29.1",
     "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
