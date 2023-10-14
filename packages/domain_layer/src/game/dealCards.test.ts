@@ -2,7 +2,7 @@ import { pipe } from 'fp-ts/function';
 import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
 import { createIdToPlayer, createPlayer, toPlayers } from 'player';
-import { prop, path } from 'ramda';
+import { prop, pathOr } from 'remeda';
 
 import { createGame, createIdToGame } from './createGame';
 import { dealCards } from './dealCards';
@@ -48,7 +48,7 @@ describe('dealCards', () => {
         //
         dealtCardsGame,
         O.map(prop('players')),
-        O.map(A.map(path(['hands', 'length']))),
+        O.map(A.map(pathOr(['hands', 'length'], 0))),
       ),
     ).toMatchObject(O.some(A.replicate(2, 32)));
   });
@@ -89,7 +89,7 @@ describe('dealCards', () => {
         //
         dealtCardsGame,
         O.map(prop('players')),
-        O.map(A.map(path(['hands', 'length']))),
+        O.map(A.map(pathOr(['hands', 'length'], 0))),
       ),
     ).toMatchObject(O.some(A.replicate(3, 21)));
   });
@@ -140,7 +140,7 @@ describe('dealCards', () => {
         //
         dealtCardsGame,
         O.map(prop('players')),
-        O.map(A.map(path(['hands', 'length']))),
+        O.map(A.map(pathOr(['hands', 'length'], 0))),
       ),
     ).toMatchObject(O.some(A.replicate(4, 16)));
   });
@@ -194,7 +194,7 @@ describe('dealCards', () => {
         //
         dealtCardsGame,
         O.map(prop('players')),
-        O.map(A.map(path(['hands', 'length']))),
+        O.map(A.map(pathOr(['hands', 'length'], 0))),
       ),
     ).toMatchObject(O.some(A.replicate(5, 12)));
   });
@@ -258,7 +258,7 @@ describe('dealCards', () => {
         //
         dealtCardsGame,
         O.map(prop('players')),
-        O.map(A.map(path(['hands', 'length']))),
+        O.map(A.map(pathOr(['hands', 'length'], 0))),
       ),
     ).toMatchObject(O.some(A.replicate(6, 10)));
   });

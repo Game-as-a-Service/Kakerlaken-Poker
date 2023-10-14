@@ -4,7 +4,8 @@ import O from 'fp-ts/Option';
 import L from 'monocle-ts/Lens';
 import { match } from 'ts-pattern';
 import { shuffle } from 'lib/shuffle';
-import { always, prop } from 'ramda';
+import { prop } from 'remeda';
+import { always } from 'utils/fp';
 import { Player } from 'player';
 
 import { Game } from './type';

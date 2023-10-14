@@ -1,8 +1,9 @@
 import { pipe, flow } from 'fp-ts/function';
 import Random from 'fp-ts/Random';
 import O from 'fp-ts/Option';
-import { and, gte, lte, prop } from 'ramda';
+import { allPass, prop } from 'remeda';
 import { Player } from 'player';
+import { gte, lte } from 'utils/fp';
 
 import { createDeck } from './deck';
 import { OmitIdGame, Game } from './type';
@@ -11,7 +12,7 @@ interface CreateGame {
   (players: Player[]): O.Option<OmitIdGame>;
 }
 
-const checkPlayerCount = (count: number) => and(gte(count)(2), lte(count)(6));
+const checkPlayerCount = (count: number) => allPass(count, [gte(2), lte(6)]);
 
 export const createGame: CreateGame = (players) =>
   pipe(

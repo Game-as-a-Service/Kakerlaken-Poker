@@ -1,6 +1,7 @@
 import O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/function';
-import { prop, path, always } from 'ramda';
+import { prop, pathOr } from 'remeda';
+import { always } from 'utils/fp';
 import { User } from 'user';
 
 import { createPlayer } from './createPlayer';
@@ -60,7 +61,7 @@ describe('createPlayer', () => {
         pipe(
           //
           player,
-          O.map(path(['hands', 'length'])),
+          O.map(pathOr(['hands', 'length'], 0)),
           O.getOrElseW(always(O.none)),
         ),
       ).toBe(0);
@@ -71,7 +72,7 @@ describe('createPlayer', () => {
         pipe(
           //
           player,
-          O.map(path(['pastReceivedCards', 'length'])),
+          O.map(pathOr(['pastReceivedCards', 'length'], 0)),
           O.getOrElseW(always(O.none)),
         ),
       ).toBe(0);

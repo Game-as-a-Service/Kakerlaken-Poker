@@ -1,7 +1,8 @@
 import { User } from 'user';
-import { prop, equals, not, and } from 'ramda';
+import { not } from 'utils/fp';
+import { prop, equals, allPass } from 'remeda';
 import O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/function';
+import { flow, pipe } from 'fp-ts/function';
 
 import { OmitIdPlayer, Player } from './type';
 
@@ -18,10 +19,10 @@ const userCovertToPlayer = (user: User) =>
   );
 
 const haveNameAndUid = (user: User) =>
-  and(
-    pipe(user, prop('uid'), equals(''), not),
-    pipe(user, prop('name'), equals(''), not),
-  );
+  allPass(user, [
+    flow(prop('uid'), equals(''), not),
+    flow(prop('name'), equals(''), not),
+  ]);
 
 export const createPlayer: CreatePlayer = (user) =>
   pipe(

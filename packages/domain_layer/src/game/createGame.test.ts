@@ -1,7 +1,8 @@
 import { pipe } from 'fp-ts/function';
 import O from 'fp-ts/Option';
-import { always, path } from 'ramda';
+import { pathOr } from 'remeda';
 import { Player } from 'player';
+import { always } from 'utils/fp';
 
 import { createGame } from './createGame';
 
@@ -63,7 +64,7 @@ describe('createGame', () => {
         pipe(
           //
           game,
-          O.map(path(['deck', 'length'])),
+          O.map(pathOr(['deck', 'length'], 0)),
           O.getOrElseW(always(O.none)),
         ),
       ).toBe(64);

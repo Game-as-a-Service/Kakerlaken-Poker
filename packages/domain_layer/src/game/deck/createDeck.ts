@@ -1,5 +1,5 @@
 import { Card, Creature, createCard } from 'card';
-import { always } from 'ramda';
+import { always } from 'utils/fp';
 import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/function';
