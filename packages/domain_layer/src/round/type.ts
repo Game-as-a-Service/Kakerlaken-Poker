@@ -1,3 +1,4 @@
+import { Card } from 'card';
 import { Player } from 'player';
 
 export enum SelectedPlayerState {
@@ -14,6 +15,7 @@ export type Round = {
   id: string;
   currentPlayer: Player;
   selectedPlayer?: Player;
+  selectedCard?: Card;
   state: SelectedPlayerState;
 };
 

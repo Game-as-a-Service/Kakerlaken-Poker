@@ -8,7 +8,7 @@ import Random from 'fp-ts/Random';
 import O from 'fp-ts/Option';
 import { always } from 'utils/fp';
 
-import { OmitIdRound, SelectedPlayerState } from './type';
+import { OmitIdRound, Round, SelectedPlayerState } from './type';
 
 interface CreateRound {
   (game: Game): OmitIdRound;
@@ -38,4 +38,13 @@ export const createRound: CreateRound = (game) =>
         state: SelectedPlayerState.NONE,
       }),
     ),
+  );
+
+export const createIdToGame = (round: O.Option<OmitIdRound>): O.Option<Round> =>
+  pipe(
+    round,
+    O.map((round) => ({
+      ...round,
+      id: Random.randomInt(1, 1000)().toString(),
+    })),
   );

@@ -3,6 +3,7 @@ import { always } from 'utils/fp';
 import A from 'fp-ts/Array';
 import O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/function';
+import { Game } from 'game';
 
 type NoIdCards = Omit<Card, 'id'>[];
 
@@ -38,4 +39,20 @@ export const createDeck: CreateDeck = () =>
     concatCardOfDeck(Creature.Spider),
     concatCardOfDeck(Creature.StickBug),
     concatCardOfDeck(Creature.Toad),
+  );
+
+export const createIdToCardOfDeck = (game: Game): Game =>
+  pipe(
+    //
+    game,
+    (game) => ({
+      ...game,
+      deck: pipe(
+        game.deck,
+        A.mapWithIndex<Card, Card>((idx, card) => ({
+          ...card,
+          id: idx.toString(),
+        })),
+      ),
+    }),
   );

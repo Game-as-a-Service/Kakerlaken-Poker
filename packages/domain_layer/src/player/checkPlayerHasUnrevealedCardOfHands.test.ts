@@ -21,7 +21,7 @@ describe('checkPlayerHasUnrevealedCardOfHands', () => {
       createIdToPlayer,
       O.map((player) => {
         player.hands = [
-          { id: 1, status: Status.Unrevealed, creature: Creature.Bat },
+          { id: '1', status: Status.Unrevealed, creature: Creature.Bat },
         ];
         return player;
       }),
